@@ -1,1 +1,318 @@
-/* Your SCSS here. */
+$color-dark: #1a1a1a;
+$color-teal: #2ec4b6;
+$color-light: #ffffff;
+$color-text: #222;
+$navbar-padding-large: 30px;
+$navbar-padding-small: 12px;
+$transition-speed: 0.2s;
+
+// Mixin
+@mixin flex-center($direction: row) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: $color-dark;
+  display: flex;
+  gap: 20px;
+  z-index: 100;
+  padding: $navbar-padding-large 20px;
+  font-size: 1.5rem;
+  transition: padding $transition-speed ease, font-size $transition-speed ease;
+
+  &.scrolled {
+    padding: $navbar-padding-small 20px;
+    font-size: 1rem;
+  }
+
+  a {
+    color: $color-light;
+    text-decoration: none;
+
+    &.active {
+      font-weight: bold;
+      border-bottom: 2px solid $color-light;
+    }
+  }
+}
+
+.navbar.scrolled {
+  padding: 12px 20px;
+  font-size: 1rem;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
+
+.stripe {
+  width: 100%;
+  min-height: 100vh;
+  padding: 60px 20px;
+  box-sizing: border-box;
+  @include flex-center();
+
+  &-dark {
+    background: $color-teal;
+    color: $color-light;
+  }
+
+  &-light {
+    background: $color-light;
+    color: $color-text;
+  }
+  animation: fadeIn 1s ease-out;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.stripe-bg {
+  background-image: url('../assets/mountain.jpeg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.stripe-dark {
+  background: #2ec4b6;
+  color: white;
+}
+
+.stripe-light {
+  background: #ffffff;
+  color: #222;
+}
+
+.stripe-small {
+  min-height: auto;
+  padding: 20px 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+// Carousel
+.carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+
+  &-track {
+    display: flex;
+    transition: transform 0.4s ease;
+  }
+
+  &-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  &-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: $color-light;
+    border: none;
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  &-prev { left: 10px; }
+  &-next { right: 10px; }
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.carousel-slide img {
+  width: 100%;
+  display: block;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-prev {
+  left: 10px;
+}
+
+.carousel-next {
+  right: 10px;
+}
+
+.columns {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+
+  .column {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+  }
+}
+
+.column {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .columns {
+    flex-direction: column;
+  }
+
+  .carousel {
+    max-width: 100%;
+  }
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: white; /* controls fill via currentColor */
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.icon-link:hover .icon {
+  transform: scale(1.2);
+  color: #2ec4b6;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.icon-link {
+  display: inline-flex;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: #222;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.icon-link:hover .icon {
+  transform: scale(1.2);
+  color: #2ec4b6;
+}
+
+#home, #about, #contact {
+  .container {
+    font-size: 4rem;
+  }
+}
